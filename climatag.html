@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLIMATAG TECHNOLOGIES | Advanced Ventilation & Climate Solutions</title>
+
+<!-- SEO -->
+<meta name="description" content="Climatag Technologies delivers climate-smart ventilation and storage solutions for agriculture.">
+<meta name="keywords" content="Ventilation, Cold Storage, HVAC, Agriculture">
+<meta name="author" content="Climatag Technologies">
+
+<link rel="icon" href="favicon.ico">
+
+<style>
+
+/* GLOBAL */
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+line-height:1.6;
+color:#222;
+}
+
+/* CLIMAT-AG ANIMATION */
+.climat{color:#61A1C8;}
+.ag{color:#98C268;}
+
+.animate-bold{
+animation:boldPulse 3s ease-in-out infinite;
+display:inline-block;
+}
+
+@keyframes boldPulse{
+50%{font-weight:500; transform:scale(1);}
+50%{font-weight:500; transform:scale(1);}
+50%{font-weight:500; transform:scale(1);}
+}
+
+/* HEADER */
+header{
+background:#ffffff;
+color:#fff;
+padding:1rem 2rem;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+/* BRAND */
+.brand{
+display:flex;
+align-items:center;
+}
+.logo{
+height:48px;
+animation:fadeLogo 1s ease;
+}
+
+/* LOGO FADE */
+@keyframes fadeLogo{
+from{opacity:0; transform:scale(0.9);}
+to{opacity:1;}
+}
+
+/* NAV */
+nav a{
+color:#2893eb;
+margin-left:1.5rem;
+text-decoration:none;
+font-weight:600;
+font-size:15px;        /* controls font height */
+letter-spacing:0.5px; /* cleaner look */
+text-transform:uppercase;
+line-height:1.4;
+transition:0.3s ease;
+}
+
+/* Hover effect */
+nav a:hover{
+color:#0a3d62;
+border-bottom:2px solid #0a3d62;
+padding-bottom:4px;
+}
+
+/* SECTIONS */
+section{
+padding:3rem 2rem;
+max-width:1100px;
+margin:auto;
+}
+section h2{
+color:#0a3d62;
+}
+
+/* HERO */
+.hero{
+background:linear-gradient(to right,hsl(0, 0%, 100%),#fff);
+text-align:center;
+overflow:hidden;
+}
+
+/* SLIDER CONTAINER */
+.hero-slider{
+display:flex;
+width:auto; /* 100% x number of images */
+animation:slideHero 12s infinite;
+}
+
+/* SLIDES */
+.hero-slide{
+width:auto;
+height:280px;
+flex-shrink:0;
+}
+
+/* KEYFRAMES */
+@keyframes slideHero{
+
+0%{transform:translateX(0);}
+25%{transform:translateX(0);}      /* stay on 1st */
+
+33%{transform:translateX(-100%);}
+58%{transform:translateX(-100%);} /* stay on 2nd */
+
+66%{transform:translateX(-200%);}
+91%{transform:translateX(-200%);} /* stay on 3rd */
+
+100%{transform:translateX(0);}
+}
+
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:2rem;
+}
+.card{
+padding:1.5rem;
+border:1px solid #e0e0e0;
+border-radius:6px;
+background:#fafafa;
+transition:0.3s;
+}
+
+/* CLICKABLE CARDS */
+.card-link{
+text-decoration:none;
+color:inherit;
+}
+.card-link:hover .card{
+transform:translateY(-4px);
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+border-color:#0a3d62;
+}
+
+/* FOOTER */
+footer{
+background:#0a3d62;
+color:#fff;
+text-align:center;
+padding:2rem;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.logo{height:32px;}
+nav a{margin-left:0.8rem;}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="brand">
+<a href="index.html">
+<img src="D:\DiskF\Niles Bussiness\ClimatagLogo\Climatag_webpageLogo2.jpg" class="logo" alt="Climatag Logo">
+</a>
+</div>
+
+<nav>
+<a href="#about">About</a>
+<a href="#solutions">Solutions</a>
+<a href="#applications">Applications</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="hero-slider">
+
+<img src="D:\DiskF\Niles Bussiness\ClimatagLogo\webpage\Beed Onion Storage.jpg" class="hero-slide">
+
+<img src="D:\DiskF\Niles Bussiness\ClimatagLogo\webpage\FrontView_Sinnar.jpg" class="hero-slide">
+
+<img src="D:\DiskF\Niles Bussiness\ClimatagLogo\webpage\FrontView_Beed.jpg" class="hero-slide">
+<img src="D:\DiskF\Niles Bussiness\ClimatagLogo\webpage\Satna_Storage.jpg" class="hero-slide">
+
+<img src="D:\DiskF\Niles Bussiness\ClimatagLogo\webpage\Isometric_Outside_Sinnar.jpg" class="hero-slide">
+<img src="D:\DiskF\Niles Bussiness\ClimatagLogo\webpage\Isometric_beed.jpg" class="hero-slide">
+
+</div>
+
+<h2>
+Going 
+<span class="climat animate-bold">CLIMAT</span>e
+<span class="ag animate-bold">AG</span>nostic 
+amidst the increasing climatic risks in Post-Hravest Stoarge
+</h2>
+
+<p>
+Climatag Technologies designs and deploys engineered
+Precise micro-climate control systems for post-harvest storage to prevent the losses from Climatic uncertinities.
+</p>
+
+</section>
+
+
+<section id="about">
+<h2>About CLIMATAG</h2>
+<p> In India, nearly 30 to 40% of agricultural produce loses its value every year due to poor post-harvest infrastructure, causing massive income loss for farmers. We bridge this critical gap by delivering scientific, affordable, and climate-smart storage solutions designed specifically for rural India—helping farmers preserve quality, extend shelf life, and earn better prices for their hard work. 
+</p>
+<p> भारत में हर साल लगभग 30-40% कृषि उपज खराब पोस्ट-हार्वेस्ट इंफ्रास्ट्रक्चर के कारण अपना मूल्य खो देती है, जिससे किसानों को भारी आर्थिक नुकसान होता है। हम इस अंतर को वैज्ञानिक, किफायती और क्लाइमेट-स्मार्ट स्टोरेज समाधानों के माध्यम से भरते हैं, जो विशेष रूप से ग्रामीण भारत के लिए डिज़ाइन किए गए हैं, ताकि किसान अपनी उपज की गुणवत्ता बनाए रख सकें, उसकी शेल्फ लाइफ बढ़ा सकें और बेहतर दाम प्राप्त कर सकें।
+</p>
+भारतामध्ये दरवर्षी सुमारे 30-40% कृषी उत्पादन अपुरी पोस्ट-हार्वेस्ट पायाभूत सुविधा असल्यामुळे मूल्य गमावते, ज्यामुळे शेतकऱ्यांचे मोठे आर्थिक नुकसान होते. आम्ही हा महत्त्वाचा दरी वैज्ञानिक, परवडणाऱ्या आणि क्लायमेट-स्मार्ट साठवण उपायांद्वारे भरून काढतो, जे खास ग्रामीण भारतासाठी डिझाइन केलेले आहेत, यामुळे शेतकऱ्यांना उत्पादनाची गुणवत्ता टिकवता येते, शेल्फ लाईफ वाढवता येते आणि चांगला दर मिळतो.
+</p>
+</section>
+
+<!-- CORE SOLUTIONS -->
+<section id="solutions">
+<h2>Core Solutions</h2>
+<div class="grid">
+
+<a href="D:\DiskF\Niles Bussiness\ClimatagLogo\webpage\CAOSS_Subpage.html" class="card-link">
+<div class="card">
+<h3>Climate Agnostic Onion Storages</h3>
+<p>Ventilation strategies minimizing moisture loss and quality degradation.</p>
+</div>
+</a>
+
+<a href="thermal-cold-storage.html" class="card-link">
+<div class="card">
+<h3>Thermal Backup Cold Storages</h3>
+<p>Controlled atmosphere & humidity management.</p>
+</div>
+</a>
+
+<a href="hvac.html" class="card-link">
+<div class="card">
+<h3>Energy Efficient HVAC</h3>
+<p>Low energy cooling systems for rural installations.</p>
+</div>
+</a>
+
+</div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="applications">
+<h2>Applications</h2>
+<div class="grid">
+
+<a href="retrofit-chawl.html" class="card-link">
+<div class="card">
+<h3>Retrofitting Onion Chawls</h3>
+<p>Ventilation-first upgrades.</p>
+</div>
+</a>
+
+<a href="new-storage.html" class="card-link">
+<div class="card">
+<h3>New Climate Agnostic Storages</h3>
+<p>Stable storage environments.</p>
+</div>
+</a>
+
+<a href="farmer-cold-storage.html" class="card-link">
+<div class="card">
+<h3>Thermal Backup for Farmers</h3>
+<p>Integrated sensing and control systems.</p>
+</div>
+</a>
+
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: contact@climatag.in<br>Location: India</p>
+</section>
+
+<footer>
+<img src="D:\DiskF\Niles Bussiness\ClimatagLogo\Climatag_webpageLogo2.jpg" height="40"><br><br>
+<p>© 2026 Climatag Technologies</p>
+</footer>
+
+</body>
+</html>
