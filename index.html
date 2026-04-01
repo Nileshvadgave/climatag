@@ -1,292 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLIMATAG TECHNOLOGIES | Post-Harvest Tech Solutions </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIMATAG Technologies | Engineering Climate-Smart Agri-Infrastructure</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- SEO -->
-<meta name="description" content="Climatag Technologies delivers climate-smart storage solutions for agriculture.">
-<meta name="keywords" content="Ventilation, Cold Storage, HVAC, Agriculture">
-<meta name="author" content="Climatag Technologies">
+    <style>
+        :root {
+            --primary: #0a3d62; 
+            --accent: #98C268;  
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-<link rel="icon" href="favicon.ico">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main); 
+            background: var(--white); 
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-<style>
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
 
-/* GLOBAL */
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-line-height:1.6;
-color:#222;
-}
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 0.8rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(10, 61, 98, 0.08);
+        }
 
-/* CLIMAT-AG ANIMATION */
-.climat{color:#61A1C8;}
-.ag{color:#98C268;}
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--primary); 
+            font-weight: 700; 
+            font-size: 0.8rem; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a:hover { color: var(--accent); }
 
-.animate-bold{
-animation:boldPulse 3s ease-in-out infinite;
-display:inline-block;
-}
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
+            margin-top: 70px;
+            gap: 40px;
+        }
 
-@keyframes boldPulse{
-50%{font-weight:500; transform:scale(1);}
-50%{font-weight:500; transform:scale(1);}
-50%{font-weight:500; transform:scale(1);}
-}
+        .hero-content { flex: 1.2; }
+        .hero-content h1 { font-size: 3.5rem; line-height: 1.1; color: var(--primary); margin-bottom: 1.5rem; }
+        .hero-content h1 span { color: var(--accent); }
+        .hero-content p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; }
 
-/* HEADER */
-header{
-background:#ffffff;
-color:#fff;
-padding:1rem 2rem;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:1000;
-}
+        .hero-visual {
+            flex: 1;
+            height: 500px;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(10, 61, 98, 0.15);
+        }
+        
+        .slider-img {
+            position: absolute;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+        .slider-img.active { opacity: 1; }
 
-/* BRAND */
-.brand{
-display:flex;
-align-items:center;
-}
-.logo{
-height:48px;
-animation:fadeLogo 1s ease;
-}
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: var(--transition);
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-3px); }
 
-/* LOGO FADE */
-@keyframes fadeLogo{
-from{opacity:0; transform:scale(0.9);}
-to{opacity:1;}
-}
+        .about-section { padding: 8rem 8%; background: #fff; }
+        .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-image { 
+            width: 100%; 
+            height: 400px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+        }
+        .about-image img { width: 100%; height: 100%; object-fit: cover; }
 
-/* NAV */
-nav a{
-color:#2893eb;
-margin-left:1.5rem;
-text-decoration:none;
-font-weight:600;
-font-size:15px;        /* controls font height */
-letter-spacing:0.5px; /* cleaner look */
-text-transform:uppercase;
-line-height:1.4;
-transition:0.3s ease;
-}
+        .impact-section { background: var(--primary); padding: 6rem 8%; color: white; text-align: center; }
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .impact-card { background: rgba(255,255,255,0.05); padding: 3rem 1.5rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .impact-card h2 { font-size: 3rem; color: var(--accent); margin-bottom: 0.5rem; }
 
-/* Hover effect */
-nav a:hover{
-color:#0a3d62;
-border-bottom:2px solid #0a3d62;
-padding-bottom:4px;
-}
+        .section { padding: 8rem 8%; }
+        .section-tag { color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block; }
+        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+        .sol-card { background: white; padding: 3rem; border-radius: 24px; border: 1px solid #edf2f7; transition: var(--transition); }
+        .sol-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .sol-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; display: block; }
 
-/* SECTIONS */
-section{
-padding:3rem 2rem;
-max-width:1100px;
-margin:auto;
-}
-section h2{
-color:#0a3d62;
-}
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .project-card { height: 400px; border-radius: 20px; overflow: hidden; position: relative; }
+        .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .project-card:hover img { transform: scale(1.1); }
+        .project-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, var(--primary)); color: white; }
 
-/* HERO */
-.hero{
-background:linear-gradient(to right,hsl(0, 0%, 100%),#fff);
-text-align:center;
-overflow:hidden;
-}
+        .blog-section { padding: 8rem 8%; background: var(--bg-light); }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .blog-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
+        .blog-card:hover { transform: translateY(-5px); }
+        .blog-img { width: 100%; height: 200px; overflow: hidden; }
+        .blog-img img { width: 100%; height: 100%; object-fit: cover; }
 
-/* SLIDER CONTAINER */
-.hero-slider{
-display:flex;
-width:auto; /* 100% x number of images */
-animation:slideHero 12s infinite;
-}
+        footer { background: #051a2b; color: #94a3b8; padding: 6rem 8% 2rem; }
 
-/* SLIDES */
-.hero-slide{
-width:auto;
-height:280px;
-flex-shrink:0;
-}
-
-/* KEYFRAMES */
-@keyframes slideHero{
-
-0%{transform:translateX(0);}
-25%{transform:translateX(0);}      /* stay on 1st */
-
-33%{transform:translateX(-100%);}
-58%{transform:translateX(-100%);} /* stay on 2nd */
-
-66%{transform:translateX(-200%);}
-91%{transform:translateX(-200%);} /* stay on 3rd */
-
-100%{transform:translateX(0);}
-}
-
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:2rem;
-}
-.card{
-padding:1.5rem;
-border:1px solid #e0e0e0;
-border-radius:6px;
-background:#fafafa;
-transition:0.3s;
-}
-
-/* CLICKABLE CARDS */
-.card-link{
-text-decoration:none;
-color:inherit;
-}
-.card-link:hover .card{
-transform:translateY(-4px);
-box-shadow:0 6px 18px rgba(0,0,0,0.1);
-border-color:#0a3d62;
-}
-
-/* FOOTER */
-footer{
-background:#ffff;
-color:#0a3d62;
-text-align:center;
-padding:2rem;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-.logo{height:32px;}
-nav a{margin-left:0.8rem;}
-}
-
-</style>
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="brand">
-<a href="index.html">
-<img src="images/Climatag_webpageLogo2.jpg" class="logo" alt="Climatag Logo">
-</a>
-</div>
+    <nav>
+        <div class="logo-container">
+            <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#deployments">Projects</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<nav>
-<a href="#about">About</a>
-<a href="#solutions">Solutions</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="section-tag">Deep-Tech Engineering</span>
+            <h1>Going <span>CLIMATe AGnostic</span> in Agri-Storage</h1>
+            <p>We deploy precise micro-climate control systems to safeguard agricultural value against increasing climatic risks.</p>
+            <a href="#solutions" class="btn btn-primary">Our Solutions</a>
+        </div>
+        <div class="hero-visual">
+            <img src="images/Beed Onion Storage.jpg" class="slider-img active">
+            <img src="images/FrontView_Sinnar.jpg" class="slider-img">
+            <img src="images/Satna_Storage.jpg" class="slider-img">
+        </div>
+    </section>
 
-<!-- HERO -->
-<section class="hero">
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="images/FrontView_Beed.jpg" alt="Our Work">
+            </div>
+            <div>
+                <span class="section-tag">Who We Are</span>
+                <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem;">Engineering a Loss-Free Future</h2>
+                <p style="margin-bottom: 1rem;">CLIMATAG Technologies is a ₹50 Crore deep-tech startup born from the necessity to solve India's post-harvest crisis. With 30-40% of produce lost to heat and humidity, we bridge the gap between traditional farming and modern engineering.</p>
+                <p>Our team specializes in heat transfer, airflow dynamics, and IoT-driven automation, ensuring that every farmer and FPO can access industrial-grade storage reliability.</p>
+            </div>
+        </div>
+    </section>
 
-<div class="hero-slider">
+    <section id="impact" class="impact-section">
+        <span class="section-tag" style="color: var(--accent);">Our Footprint</span>
+        <h2 style="font-size: 2.5rem; margin-top: 10px;">Proven Impact</h2>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <h2>40%</h2>
+                <p>Reduction in Losses</p>
+            </div>
+            <div class="impact-card">
+                <h2>24h</h2>
+                <p>Grid-Free Backup</p>
+            </div>
+            <div class="impact-card">
+                <h2>80L+</h2>
+                <p>MT Volume Protected</p>
+            </div>
+            <div class="impact-card">
+                <h2>1.5x</h2>
+                <p>Income Growth</p>
+            </div>
+        </div>
+    </section>
 
-<img src="images\Beed Onion Storage.jpg" class="hero-slide">
+    <section id="solutions" class="section">
+        <div style="text-align: center; margin-bottom: 5rem;">
+            <span class="section-tag">Engineering Depth</span>
+            <h2 style="font-size: 2.5rem; color: var(--primary);">Intelligent Systems</h2>
+        </div>
+        <div class="solutions-grid">
+            <div class="sol-card">
+                <i class="fas fa-microchip"></i>
+                <h3>Algorithm-Based Storage</h3>
+                <p>Optimized micro-climate control tuned for high-volume onion and perishable storage.</p>
+            </div>
+            <div class="sol-card">
+                <i class="fas fa-snowflake"></i>
+                <h3>Thermal Energy Storage</h3>
+                <p>Proprietary Ice-Bank technology for continuous cooling without grid dependency.</p>
+            </div>
+            <div class="sol-card">
+                <i class="fas fa-leaf"></i>
+                <h3>Agri Consultancy</h3>
+                <p>Technical feasibility and carbon footprint analysis for large-scale agri-projects.</p>
+            </div>
+        </div>
+    </section>
 
-<img src="images\FrontView_Sinnar.jpg" class="hero-slide">
+    <section id="deployments" class="section deployments" style="background: var(--bg-light);">
+        <span class="section-tag">Field Operations</span>
+        <h2 style="color: var(--primary); font-size: 2.5rem; margin-bottom: 3rem;">Live Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="images/FrontView_Beed.jpg">
+                <div class="project-info"><h4>Beed Project</h4><p>Onion Storage | Micro-climate Control</p></div>
+            </div>
+            <div class="project-card">
+                <img src="images/FrontView_Sinnar.jpg">
+                <div class="project-info"><h4>Sinnar Hub</h4><p>Advanced Ventilation Systems</p></div>
+            </div>
+            <div class="project-card">
+                <img src="images/Satna_Storage.jpg">
+                <div class="project-info"><h4>Satna Facility</h4><p>Climate Agnostic Infrastructure</p></div>
+            </div>
+        </div>
+    </section>
 
-<img src="images\FrontView_Beed.jpg" class="hero-slide">
-<img src="images\Satna_Storage.jpg" class="hero-slide">
+    <section id="blog" class="blog-section">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <span class="section-tag">Insights</span>
+            <h2 style="font-size: 2.5rem; color: var(--primary);">Knowledge Base</h2>
+        </div>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-img"><img src="images/Isometric_beed.jpg"></div>
+                <div class="blog-content">
+                    <h4>The Science of Airflow</h4>
+                    <p>Understanding how uniform ventilation prevents neck-rot in stored onions.</p>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-img"><img src="images/Isometric_Outside_Sinnar.jpg"></div>
+                <div class="blog-content">
+                    <h4>Why Ice Banks?</h4>
+                    <p>How thermal storage is solving the rural electricity grid challenge.</p>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-img"><img src="images/Beed Onion Storage.jpg"></div>
+                <div class="blog-content">
+                    <h4>ROI in Agri-Tech</h4>
+                    <p>Calculating the payback period of climate-resilient storage systems.</p>
+                </div>
+            </article>
+        </div>
+    </section>
 
-<img src="images\Isometric_Outside_Sinnar.jpg" class="hero-slide">
-<img src="images\Isometric_beed.jpg" class="hero-slide">
+    <section id="contact" class="section">
+        <div class="about-container">
+            <div>
+                <h2 style="font-size: 2.5rem; color: var(--primary);">Connect With Us</h2>
+                <p style="margin: 2rem 0; color: var(--text-muted);">Reach out to our specialists to discuss custom-engineered storage solutions.</p>
+                <p><strong><i class="fas fa-envelope"></i></strong> contact@climatag.in</p>
+                <p><strong><i class="fas fa-phone"></i></strong> +91 9146400664</p>
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> Pune, Maharashtra, India</p>
+            </div>
+            <div style="background: var(--bg-light); padding: 3rem; border-radius: 20px;">
+                <form action="#">
+                    <input type="text" placeholder="Name" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px;">
+                    <input type="email" placeholder="Email" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px;">
+                    <textarea placeholder="Your Message" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px; height: 100px;"></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="logo-container">
+            <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG">
+        </div>
+                <p>Future-proofing agriculture through deep-tech climate solutions.</p>
+            </div>
 
-<h2>
-Going 
-<span class="climat animate-bold">CLIMAT</span>e
-<span class="ag animate-bold">AG</span>nostic 
-amidst the increasing climatic risks in Post-Harvest Storage
-</h2>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Quick Links</h4>
+                <p><a href="#about" style="color: inherit; text-decoration: none;">About</a></p>
+                <p><a href="#solutions" style="color: inherit; text-decoration: none;">Solutions</a></p>
+                <p><a href="#blog" style="color: inherit; text-decoration: none;">Blog</a></p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Legal</h4>
+                <p>Privacy Policy</p>
+                <p>Terms of Use</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 CLIMATAG Technologies Pvt Ltd. All rights reserved.</p>
+        </div>
+    </footer>
 
-<p>
-Climatag Technologies designs and deploys engineered
-Precise micro-climate control systems for post-harvest storage to prevent the losses from Climatic uncertainties.
-</p>
-
-</section>
-
-
-<section id="about">
-<h2>About CLIMATAG</h2>
-<p> In India, nearly 30 to 40% of agricultural produce loses its value every year due to poor post-harvest infrastructure, causing massive income loss for farmers. We bridge this critical gap by delivering scientific, affordable, and climate-smart storage solutions designed specifically for rural India, helping farmers preserve quality, extend shelf life, and earn better prices for their hard work. 
-</p>
-<p> भारत में हर साल लगभग 30-40% कृषि उपज खराब पोस्ट-हार्वेस्ट इंफ्रास्ट्रक्चर के कारण अपना मूल्य खो देती है, जिससे किसानों को भारी आर्थिक नुकसान होता है। हम इस अंतर को वैज्ञानिक, किफायती और क्लाइमेट-स्मार्ट स्टोरेज समाधानों के माध्यम से भरते हैं, जो विशेष रूप से ग्रामीण भारत के लिए डिज़ाइन किए गए हैं, ताकि किसान अपनी उपज की गुणवत्ता बनाए रख सकें, उसकी शेल्फ लाइफ बढ़ा सकें और बेहतर दाम प्राप्त कर सकें।
-</p>
-भारतामध्ये दरवर्षी सुमारे 30-40% कृषी उत्पादन अपुरी पोस्ट-हार्वेस्ट पायाभूत सुविधा असल्यामुळे मूल्य गमावते, ज्यामुळे शेतकऱ्यांचे मोठे आर्थिक नुकसान होते. आम्ही हा महत्त्वाचा दरी वैज्ञानिक, परवडणाऱ्या आणि क्लायमेट-स्मार्ट साठवण उपायांद्वारे भरून काढतो, जे खास ग्रामीण भारतासाठी डिझाइन केलेले आहेत, यामुळे शेतकऱ्यांना उत्पादनाची गुणवत्ता टिकवता येते, शेल्फ लाईफ वाढवता येते आणि चांगला दर मिळतो.
-</p>
-</section>
-
-<!-- CORE SOLUTIONS -->
-<section id="solutions">
-<h2>Core Solutions (Click to know more)</h2>
-<div class="grid">
-
-<a href="CAOSS_Subpage.html" class="card-link">
-<div class="card">
-<h3>Climate Agnostic Onion Storages</h3>
-<p>Algorithm based control system minimizing weight loss and quality degradation.</p>
-</div>
-</a>
-
-<a href="index.html" class="card-link">
-<div class="card">
-<h3>Thermal Backup Cold Storages for Vegetable</h3>
-<p>Cols storage with Thermal battery technology to work without grid electricity upto 24 hours.</p>
-</div>
-</a>
-
-<a href="index.html" class="card-link">
-<div class="card">
-<h3>Agri Tech Project Consultancy</h3>
-<p>From Impact Assessment to the Carbon Footprint analysis of Rural developemnt projects.</p>
-</div>
-</a>
-
-</div>
-
-<section id="contact">
-<h2>Contact</h2>
-<p>Email: contact@climatag.in<br>
-Sr. No. 2, Chaudhari Park, Near Gaurav Shop, Dighi Camp, Pune City, Pune- 411015, Maharashtra, India
-Website: www.climatag.in | Email: contact@climatag.in | vadgave.nilesh56@gmail.com  Contact No. +91 9146400664
-</p>
-</section>
-
-<footer>
-<img src="images\Climatag_webpageLogo2.jpg" height="40">
-<p>© 2026 Climatag Technologies</p>
-</footer>
-
+    <script>
+        const slides = document.querySelectorAll('.slider-img');
+        let currentSlide = 0;
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
