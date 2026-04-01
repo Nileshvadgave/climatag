@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* --- VARIABLES --- */
         :root {
             --primary: #0a3d62; 
             --accent: #98C268;  
@@ -17,151 +18,354 @@
             --text-muted: #64748b;
             --white: #ffffff;
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --nav-height: 70px;
+            --border-radius: 12px;
+            --section-padding: 4rem 5%;
         }
 
+        /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         
         body { 
             font-family: 'Inter', sans-serif; 
             color: var(--text-main); 
             background: var(--white); 
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3 { font-family: 'Outfit', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.2; }
+        img { max-width: 100%; height: auto; display: block; }
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); display: inline-block; }
+
+        /* --- REUSABLE COMPONENTS --- */
+        .section-tag { 
+            color: var(--accent); 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 1rem; 
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            text-align: center;
+            min-height: 48px;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary { background: var(--primary); color: white; width: 100%; }
+        @media (min-width: 768px) { .btn-primary { width: auto; } }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
         /* --- NAVIGATION --- */
         nav {
             position: fixed;
             top: 0; width: 100%;
-            padding: 0.8rem 8%;
+            height: var(--nav-height);
+            padding: 0 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            z-index: 1000;
+            z-index: 2000;
             border-bottom: 1px solid rgba(10, 61, 98, 0.08);
         }
 
-        .logo-container img {
-            height: 50px;
-            width: auto;
-            object-fit: contain; /* Prevents logo distortion */
+        .logo-container img { height: 40px; width: auto; object-fit: contain; }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
             display: block;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+            padding: 10px;
+            z-index: 2001;
         }
-        
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { 
-            text-decoration: none; 
-            color: var(--primary); 
-            font-weight: 700; 
-            font-size: 0.8rem; 
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+
+        .nav-links {
+            position: fixed;
+            top: var(--nav-height);
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--nav-height));
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 2rem;
+            gap: 1.5rem;
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
         }
-        .nav-links a:hover { color: var(--accent); }
+
+        .nav-links.active { transform: translateX(0); }
+
+        .nav-links a {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        @media (min-width: 1024px) {
+            .menu-toggle { display: none; }
+            .nav-links {
+                position: static;
+                height: auto;
+                width: auto;
+                flex-direction: row;
+                background: transparent;
+                transform: translateX(0);
+                padding: 0;
+                gap: 2rem;
+            }
+            .nav-links a { font-size: 0.85rem; text-transform: uppercase; padding: 0; width: auto; }
+        }
 
         /* --- HERO SECTION --- */
         .hero {
-            min-height: 85vh;
+            padding: calc(var(--nav-height) + 2rem) 5% 4rem;
             display: flex;
-            align-items: center;
-            padding: 0 8%;
+            flex-direction: column;
+            gap: 2rem;
             background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
-            margin-top: 70px;
-            gap: 40px;
         }
 
-        .hero-content { flex: 1.2; }
-        .hero-content h1 { font-size: 3.5rem; line-height: 1.1; color: var(--primary); margin-bottom: 1.5rem; }
+        .hero-content h1 { 
+            font-size: clamp(2.2rem, 8vw, 3.5rem); 
+            color: var(--primary); 
+            margin-bottom: 1.5rem; 
+        }
         .hero-content h1 span { color: var(--accent); }
-        .hero-content p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; }
+        .hero-content p { 
+            font-size: 1.1rem; 
+            color: var(--text-muted); 
+            margin-bottom: 2rem; 
+            max-width: 600px; 
+        }
 
         .hero-visual {
-            flex: 1;
-            height: 500px;
-            border-radius: 40px;
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 24px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 20px 50px rgba(10, 61, 98, 0.15);
+            box-shadow: 0 20px 40px rgba(10, 61, 98, 0.1);
         }
-        
+
         .slider-img {
             position: absolute;
             width: 100%; height: 100%;
-            object-fit: cover; /* FIX: Prevents stretching */
+            object-fit: cover;
             opacity: 0;
             transition: opacity 1.2s ease-in-out;
         }
         .slider-img.active { opacity: 1; }
 
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: var(--transition);
+        @media (min-width: 1024px) {
+            .hero {
+                flex-direction: row;
+                align-items: center;
+                min-height: 90vh;
+                padding: var(--nav-height) 8%;
+                gap: 5%;
+            }
+            .hero-content { flex: 1.2; }
+            .hero-visual { flex: 1; height: 550px; }
         }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--accent); transform: translateY(-3px); }
 
-        /* --- ABOUT US SECTION (NEW) --- */
-        .about-section { padding: 8rem 8%; background: #fff; }
-        .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .about-image { 
-            width: 100%; 
-            height: 400px; 
-            border-radius: 20px; 
-            overflow: hidden; 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+        /* --- ABOUT SECTION --- */
+        .about-section { padding: var(--section-padding); background: var(--white); }
+        .about-container { display: flex; flex-direction: column; gap: 3rem; }
+        
+        .about-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
         }
         .about-image img { width: 100%; height: 100%; object-fit: cover; }
 
+        .about-content h2 { font-size: 2rem; color: var(--primary); margin-bottom: 1.5rem; }
+        .about-content p { margin-bottom: 1.2rem; color: var(--text-main); }
+
+        @media (min-width: 1024px) {
+            .about-container { flex-direction: row; align-items: center; }
+            .about-image, .about-content { flex: 1; }
+            .about-content h2 { font-size: 2.5rem; }
+        }
+
         /* --- IMPACT SECTION --- */
-        .impact-section { background: var(--primary); padding: 6rem 8%; color: white; text-align: center; }
-        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 4rem; }
-        .impact-card { background: rgba(255,255,255,0.05); padding: 3rem 1.5rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
-        .impact-card h2 { font-size: 3rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .impact-section { background: var(--primary); padding: var(--section-padding); color: white; text-align: center; }
+        .impact-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 1.5rem; 
+            margin-top: 3rem; 
+        }
+        .impact-card { 
+            background: rgba(255,255,255,0.05); 
+            padding: 2.5rem 1.5rem; 
+            border-radius: var(--border-radius); 
+            border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .impact-card h2 { font-size: 2.5rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .impact-card p { font-weight: 600; opacity: 0.9; }
+
+        @media (min-width: 640px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .impact-grid { grid-template-columns: repeat(4, 1fr); } }
 
         /* --- SOLUTIONS --- */
-        .section { padding: 8rem 8%; }
-        .section-tag { color: var(--accent); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; display: block; }
-        .solutions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
-        .sol-card { background: white; padding: 3rem; border-radius: 24px; border: 1px solid #edf2f7; transition: var(--transition); }
-        .sol-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .solutions-section { padding: var(--section-padding); }
+        .solutions-header { text-align: center; margin-bottom: 3rem; }
+        .solutions-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 2rem; 
+        }
+        .sol-card { 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 24px; 
+            border: 1px solid #edf2f7; 
+            transition: var(--transition);
+        }
         .sol-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; display: block; }
+        .sol-card h3 { margin-bottom: 1rem; color: var(--primary); }
 
-        /* --- DEPLOYMENTS (FIXED SCALING) --- */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .project-card { height: 400px; border-radius: 20px; overflow: hidden; position: relative; }
+        @media (min-width: 768px) { .solutions-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { 
+            .solutions-grid { grid-template-columns: repeat(3, 1fr); }
+            .sol-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        }
+
+        /* --- PROJECTS SECTION --- */
+        .projects-section { padding: var(--section-padding); background: var(--bg-light); }
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 1.5rem; 
+            margin-top: 2rem; 
+        }
+        .project-card { 
+            height: 350px; 
+            border-radius: var(--border-radius); 
+            overflow: hidden; 
+            position: relative; 
+        }
         .project-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .project-card:hover img { transform: scale(1.1); }
-        .project-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, var(--primary)); color: white; }
+        .project-info { 
+            position: absolute; 
+            bottom: 0; left: 0; right: 0; 
+            padding: 1.5rem; 
+            background: linear-gradient(transparent, rgba(10, 61, 98, 0.95)); 
+            color: white; 
+        }
 
-        /* --- BLOG SECTION (NEW) --- */
-        .blog-section { padding: 8rem 8%; background: var(--bg-light); }
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .blog-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
-        .blog-card:hover { transform: translateY(-5px); }
+        @media (min-width: 768px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { 
+            .projects-grid { grid-template-columns: repeat(3, 1fr); }
+            .project-card:hover img { transform: scale(1.1); }
+        }
+
+        /* --- BLOG SECTION --- */
+        .blog-section { padding: var(--section-padding); }
+        .blog-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+        .blog-card { 
+            background: white; 
+            border-radius: var(--border-radius); 
+            overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
         .blog-img { width: 100%; height: 200px; overflow: hidden; }
         .blog-img img { width: 100%; height: 100%; object-fit: cover; }
         .blog-content { padding: 1.5rem; }
-        .blog-content h4 { color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem; }
-        .blog-content p { font-size: 0.9rem; color: var(--text-muted); }
+        .blog-content h4 { color: var(--primary); margin-bottom: 0.5rem; }
+
+        @media (min-width: 768px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        /* --- CONTACT SECTION --- */
+        .contact-section { padding: var(--section-padding); }
+        .contact-container { display: flex; flex-direction: column; gap: 3rem; }
+        
+        .contact-info h2 { font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem; }
+        .contact-info p { margin-bottom: 1.5rem; }
+        .contact-details p { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            margin-bottom: 1rem;
+            min-height: 44px;
+        }
+        .contact-details i { color: var(--accent); font-size: 1.2rem; }
+
+        .contact-form-wrapper { 
+            background: var(--bg-light); 
+            padding: 2rem; 
+            border-radius: 20px; 
+        }
+        .contact-form-wrapper input, 
+        .contact-form-wrapper textarea { 
+            width: 100%; 
+            padding: 1rem; 
+            margin-bottom: 1.2rem; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        .contact-form-wrapper textarea { height: 120px; resize: vertical; }
+
+        @media (min-width: 1024px) {
+            .contact-container { flex-direction: row; }
+            .contact-info, .contact-form-wrapper { flex: 1; }
+        }
 
         /* --- FOOTER --- */
-        footer { background: #051a2b; color: #94a3b8; padding: 6rem 8% 2rem; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
-        .footer-logo img { height: 5px; margin-bottom: 2rem; object-fit: contain; }
+        footer { background: #051a2b; color: #94a3b8; padding: 4rem 5% 2rem; }
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 3rem; 
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-brand .logo-container img { height: 40px; margin-bottom: 1.5rem; }
+        .footer-links h4 { color: white; margin-bottom: 1.5rem; }
+        .footer-links ul li { margin-bottom: 0.8rem; }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
 
-        @media (max-width: 1024px) {
-            .hero, .about-container { grid-template-columns: 1fr; text-align: center; }
-            .hero-content { padding: 0; }
-            .nav-links { display: none; } /* Mobile menu would go here */
+        .footer-bottom { text-align: center; padding-top: 2rem; font-size: 0.9rem; }
+
+        @media (min-width: 768px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+        }
+
+        /* --- ANIMATIONS --- */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease-out;
+        }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -169,9 +373,14 @@
 
     <nav>
         <div class="logo-container">
-            <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG">
+            <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG Logo">
         </div>
-        <ul class="nav-links">
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="nav-links" id="nav-list">
             <li><a href="#about">About Us</a></li>
             <li><a href="#solutions">Solutions</a></li>
             <li><a href="#deployments">Projects</a></li>
@@ -181,120 +390,133 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-content">
-             <h1>Going <span>CLIMATe AGnostic</span> in Agri-Storage</h1>
+        <div class="hero-content" data-reveal>
+            <span class="section-tag">Engineering Climate Resilience</span>
+            <h1>Going <span>CLIMATe AGnostic</span> in Agri-Storage</h1>
             <p>We deploy precise micro-climate control systems to safeguard agricultural value against increasing climatic risks.</p>
             <a href="#solutions" class="btn btn-primary">Our Solutions</a>
         </div>
-        <div class="hero-visual">
-            <img src="images/Beed%20Onion%20Storage.jpg" class="slider-img active">
-            <img src="images/FrontView_Sinnar.jpg" class="slider-img">
-            <img src="images/Satna_Storage.jpg" class="slider-img">
+        <div class="hero-visual" data-reveal>
+            <img src="images/Beed%20Onion%20Storage.jpg" class="slider-img active" alt="Agri-Storage Facility 1">
+            <img src="images/FrontView_Sinnar.jpg" class="slider-img" alt="Agri-Storage Facility 2">
+            <img src="images/Satna_Storage.jpg" class="slider-img" alt="Agri-Storage Facility 3">
         </div>
     </section>
 
     <section id="about" class="about-section">
         <div class="about-container">
-            <div class="about-image">
-                <img src="images/FrontView_Beed.jpg" alt="Our Work">
+            <div class="about-image" data-reveal>
+                <img src="images/FrontView_Beed.jpg" alt="Field deployment of Climatag technology">
             </div>
-            <div>
+            <div class="about-content" data-reveal>
                 <span class="section-tag">Who We Are</span>
-                <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem;">Engineering a Loss-Free Future</h2>
-                <p style="margin-bottom: 1rem;">India loses 30-50% of its agri produce before reaching to the plates. Farmers and consumers both suffer! Reason is uncertain weather events those spiked in last few deacedes as a result of climate change! We at CLIMATAG TECHNOLOGIES PVT LTD work to solve these challenges at grass-root through Participatory design engineering, system thinking and Product innovation.</p>
-                <p>Our team specializes in heat transfer, airflow dynamics, and IoT-driven automation, ensuring that every farmer and FPO can access industrial-grade storage reliability to enhance their profitability by 2X to 4X!!</p>
+                <h2>Engineering a Loss-Free Future</h2>
+                <p>India loses 30-50% of its agri produce before reaching the plates. Reason is uncertain weather events spiked as a result of climate change. Farmers and consumers both suffer!</p>
+                <p>We work at the grass-roots through participatory design engineering, systems thinking, and product innovation.</p>
+                <p>Our team specializes in heat transfer, airflow dynamics, and IoT-driven automation, enabling farmers and FPOs to access industrial-grade storage reliability to enhance profitability by 2X to 4X.</p>
             </div>
         </div>
     </section>
 
     <section id="impact" class="impact-section">
-        <span class="section-tag" style="color: var(--accent);">Our Footprint</span>
-        <h2 style="font-size: 2.5rem; margin-top: 10px;">Proven Impact</h2>
+        <span class="section-tag">Our Footprint</span>
+        <h2 data-reveal>Proven Impact</h2>
         <div class="impact-grid">
-            <div class="impact-card">
+            <div class="impact-card" data-reveal>
                 <h2>~50%</h2>
                 <p>Reduction in Losses</p>
             </div>
-            <div class="impact-card">
+            <div class="impact-card" data-reveal>
                 <h2>5</h2>
-                <p>Onion Storages deployed</p>
+                <p>Storages Deployed</p>
             </div>
-            <div class="impact-card">
+            <div class="impact-card" data-reveal>
                 <h2>200 MT</h2>
                 <p>Volume Protected</p>
             </div>
-            <div class="impact-card">
+            <div class="impact-card" data-reveal>
                 <h2>2x</h2>
                 <p>Income Growth</p>
             </div>
         </div>
     </section>
 
-    <section id="solutions" class="section">
-        <div style="text-align: center; margin-bottom: 5rem;">
+    <section id="solutions" class="solutions-section">
+        <div class="solutions-header" data-reveal>
             <span class="section-tag">Engineering Depth</span>
-            <h2 style="font-size: 2.5rem; color: var(--primary);">Intelligent Systems</h2>
+            <h2>Intelligent Systems</h2>
         </div>
         <div class="solutions-grid">
-            <div class="sol-card">
+            <div class="sol-card" data-reveal>
                 <i class="fas fa-microchip"></i>
-                <h3>Climate Agnostic Onion Storage Structures</h3>
+                <h3>Climate Agnostic Onion Storage</h3>
                 <p>Optimized micro-climate control tuned for high-volume onion and perishable storage.</p>
             </div>
-            <div class="sol-card">
+            <div class="sol-card" data-reveal>
                 <i class="fas fa-snowflake"></i>
                 <h3>Thermal Backup Cold Storages</h3>
                 <p>Proprietary Ice-Bank technology for continuous cooling without grid dependency.</p>
             </div>
-            <div class="sol-card">
+            <div class="sol-card" data-reveal>
                 <i class="fas fa-leaf"></i>
-                <h3>Solar-powered Hydroponic fodder system</h3>
-                <p>Grow green fodder near cattle shed with 80% less water and 60% less space.</p>
+                <h3>Solar Hydroponic Fodder</h3>
+                <p>Grow green fodder near cattle sheds with 80% less water and 60% less space.</p>
             </div>
         </div>
     </section>
 
-    <section id="deployments" class="section deployments" style="background: var(--bg-light);">
-        <span class="section-tag">Field Operations</span>
-        <h2 style="color: var(--primary); font-size: 2.5rem; margin-bottom: 3rem;">Live Projects</h2>
+    <section id="deployments" class="projects-section">
+        <div data-reveal>
+            <span class="section-tag">Field Operations</span>
+            <h2>Live Projects</h2>
+        </div>
         <div class="projects-grid">
-            <div class="project-card">
-                <img src="images/FrontView_Beed.jpg">
-                <div class="project-info"><h4>Beed Project</h4><p>Onion Storage | Micro-climate Control</p></div>
+            <div class="project-card" data-reveal>
+                <img src="images/FrontView_Beed.jpg" alt="Beed Project">
+                <div class="project-info">
+                    <h4>Beed Project</h4>
+                    <p>Onion Storage | Micro-climate Control</p>
+                </div>
             </div>
-            <div class="project-card">
-                <img src="images/FrontView_Sinnar.jpg">
-                <div class="project-info"><h4>Sinnar Hub</h4><p>Advanced Ventilation Systems</p></div>
+            <div class="project-card" data-reveal>
+                <img src="images/FrontView_Sinnar.jpg" alt="Sinnar Hub">
+                <div class="project-info">
+                    <h4>Sinnar Hub</h4>
+                    <p>Advanced Ventilation Systems</p>
+                </div>
             </div>
-            <div class="project-card">
-                <img src="images/Satna_Storage.jpg">
-                <div class="project-info"><h4>Satna Facility</h4><p>Climate Agnostic Infrastructure</p></div>
+            <div class="project-card" data-reveal>
+                <img src="images/Satna_Storage.jpg" alt="Satna Facility">
+                <div class="project-info">
+                    <h4>Satna Facility</h4>
+                    <p>Climate Agnostic Infrastructure</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="blog" class="blog-section">
-        <div style="text-align: center; margin-bottom: 4rem;">
+        <div class="solutions-header" data-reveal>
             <span class="section-tag">Insights</span>
-            <h2 style="font-size: 2.5rem; color: var(--primary);">Knowledge Base</h2>
+            <h2>Knowledge Base</h2>
         </div>
         <div class="blog-grid">
-            <article class="blog-card">
-                <div class="blog-img"><img src="images/Isometric_beed.jpg"></div>
+            <article class="blog-card" data-reveal>
+                <div class="blog-img"><img src="images/Isometric_beed.jpg" alt="Airflow diagram"></div>
                 <div class="blog-content">
                     <h4>The Science of Airflow</h4>
                     <p>Understanding how uniform ventilation prevents neck-rot in stored onions.</p>
                 </div>
             </article>
-            <article class="blog-card">
-                <div class="blog-img"><img src="images/Isometric_Outside_Sinnar.jpg"></div>
+            <article class="blog-card" data-reveal>
+                <div class="blog-img"><img src="images/Isometric_Outside_Sinnar.jpg" alt="Thermal storage unit"></div>
                 <div class="blog-content">
                     <h4>Why Ice Banks?</h4>
                     <p>How thermal storage is solving the rural electricity grid challenge.</p>
                 </div>
             </article>
-            <article class="blog-card">
-                <div class="blog-img"><img src="images/Beed%20Onion%20Storage.jpg"></div>
+            <article class="blog-card" data-reveal>
+                <div class="blog-img"><img src="images/Beed%20Onion%20Storage.jpg" alt="Financial graph"></div>
                 <div class="blog-content">
                     <h4>ROI in Agri-Tech</h4>
                     <p>Calculating the payback period of climate-resilient storage systems.</p>
@@ -303,21 +525,23 @@
         </div>
     </section>
 
-    <section id="contact" class="section">
-        <div class="about-container">
-            <div>
-                <h2 style="font-size: 2.5rem; color: var(--primary);">Connect With Us</h2>
-                <p style="margin: 2rem 0; color: var(--text-muted);">Reach out to our specialists to discuss custom-engineered storage solutions.</p>
-                <p><strong><i class="fas fa-envelope"></i></strong> contact@climatag.in</p>
-                <p><strong><i class="fas fa-phone"></i></strong> +91 9146400664</p>
-                <p><strong><i class="fas fa-map-marker-alt"></i></strong> Pune, Maharashtra, India</p>
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info" data-reveal>
+                <h2>Connect With Us</h2>
+                <p>Reach out to our specialists to discuss custom-engineered storage solutions.</p>
+                <div class="contact-details">
+                    <p><i class="fas fa-envelope"></i> contact@climatag.in</p>
+                    <p><i class="fas fa-phone"></i> +91 9146400664</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra, India</p>
+                </div>
             </div>
-            <div style="background: var(--bg-light); padding: 3rem; border-radius: 20px;">
+            <div class="contact-form-wrapper" data-reveal>
                 <form action="#">
-                    <input type="text" placeholder="Name" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px;">
-                    <input type="email" placeholder="Email" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px;">
-                    <textarea placeholder="Your Message" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 8px; height: 100px;"></textarea>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <textarea placeholder="How can we help you?" required></textarea>
+                    <button type="submit" class="btn btn-primary">Submit Inquiry</button>
                 </form>
             </div>
         </div>
@@ -325,23 +549,26 @@
 
     <footer>
         <div class="footer-grid">
-            <div>
+            <div class="footer-brand">
                 <div class="logo-container">
-            <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG">
-        </div>
+                    <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG Logo">
+                </div>
                 <p>Future-proofing agriculture through deep-tech climate solutions.</p>
             </div>
-
-            <div>
-                <h4 style="color: white; margin-bottom: 1.5rem;">Quick Links</h4>
-                <p><a href="#about" style="color: inherit; text-decoration: none;">About</a></p>
-                <p><a href="#solutions" style="color: inherit; text-decoration: none;">Solutions</a></p>
-                <p><a href="#blog" style="color: inherit; text-decoration: none;">Blog</a></p>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                </ul>
             </div>
-            <div>
-                <h4 style="color: white; margin-bottom: 1.5rem;">Legal</h4>
-                <p>Privacy Policy</p>
-                <p>Terms of Use</p>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                </ul>
             </div>
         </div>
         <div class="footer-bottom">
@@ -350,14 +577,51 @@
     </footer>
 
     <script>
+        // --- MOBILE MENU LOGIC ---
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // --- IMAGE SLIDER ---
         const slides = document.querySelectorAll('.slider-img');
         let currentSlide = 0;
+        
         function nextSlide() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
         setInterval(nextSlide, 5000);
+
+        // --- SCROLL REVEAL ANIMATION ---
+        const revealElements = document.querySelectorAll('[data-reveal]');
+        
+        const scrollReveal = function() {
+            for(let i = 0; i < revealElements.length; i++) {
+                const elementIsVisible = revealElements[i].getBoundingClientRect().top < window.innerHeight / 1.15;
+                if (elementIsVisible) {
+                    revealElements[i].classList.add('revealed');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', scrollReveal);
+        window.addEventListener('load', scrollReveal);
     </script>
 </body>
 </html>
