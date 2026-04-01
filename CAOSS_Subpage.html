@@ -1,359 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Climate Agnostic Onion Storage | CLIMATAG</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAOSS | Climate Agnostic Onion Storage | CLIMATAG Technologies</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<meta name="description" content="Climate agnostic onion storage structures engineered for Indian conditions.">
-<meta name="keywords" content="Onion Storage, Ventilation, Post Harvest, Climate Smart">
-<meta name="author" content="Climatag Technologies">
+    <style>
+        :root {
+            --primary: #0a3d62; /* Deep Engineering Blue */
+            --accent: #98C268;  /* Logo Green */
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-<link rel="icon" href="favicon.ico">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main); 
+            background: var(--white); 
+            line-height: 1.6;
+        }
 
-<style>
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; color: var(--primary); }
 
-/* GLOBAL */
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-line-height:1.6;
-color:#222;
-}
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(10, 61, 98, 0.1);
+        }
 
-/* HEADER */
-header{
-background:#ffffff;
-padding:1rem 2rem;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:500;
-border-bottom:1px solid #eee;
-}
+        .logo { height: 45px; width: auto; object-fit: contain; }
+        .back-link { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
 
-/* LOGO */
-.logo{
-height:42px;
-}
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 10rem 8% 6rem;
+            background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
 
-/* NAV */
-nav a{
-color:#2893eb;
-margin-left:1.5rem;
-text-decoration:none;
-font-weight:600;
-font-size:15px;
-letter-spacing:0.5px;
-text-transform:uppercase;
-}
+        .hero-tag { 
+            display: inline-block;
+            background: rgba(152, 194, 104, 0.15);
+            color: #5d8a2a;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
 
-/* SECTION */
-section{
-padding:1.5rem 2rem;
-max-width:1100px;
-margin:auto;
-}
+        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; }
 
-/* HERO */
-.hero{
-background:linear-gradient(to right,#ffffff,#fff);
-}
+        .hero-stats { display: flex; gap: 2rem; margin-bottom: 3rem; }
+        .hero-stat-item { border-left: 3px solid var(--accent); padding-left: 1rem; }
+        .hero-stat-item strong { font-size: 1.8rem; display: block; color: var(--primary); }
+        .hero-stat-item span { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
 
-/* HERO GRID */
-.hero-content{
-display:grid;
-grid-template-columns:60% 40%;
-gap:0rem;
-align-items:flex-start;
-margin-top:1cm;
-}
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(10, 61, 98, 0.25);
+        }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
 
-/* TEXT */
-.hero-text{
-text-align:left;
-}
+        /* --- BUTTONS --- */
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
 
-.hero-text h1{
-color:#0a3d62;
-font-size:30px;
-margin-top:0%;
-margin-bottom:6px;
-}
+        /* --- SYSTEM OVERVIEW --- */
+        .section { padding: 8rem 8%; }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 5rem; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        
+        .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+        .overview-card { 
+            padding: 3rem 2rem; 
+            background: var(--bg-light); 
+            border-radius: 20px; 
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+        .overview-card:hover { background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--accent); transform: translateY(-5px); }
+        .overview-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .overview-card h3 { margin-bottom: 1rem; }
 
-.hero-text p{
-line-height:1.5;
-}
+        /* --- ENGINEERING FEATURES (GRID) --- */
+        .features-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; margin-bottom: 6rem; }
+        .features-row:nth-child(even) { direction: rtl; }
+        .features-row:nth-child(even) .features-text { direction: ltr; }
+        
+        .features-text h3 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .features-text ul { list-style: none; }
+        .features-text li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: var(--text-muted); }
+        .features-text li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
 
-/* IMAGE */
-.hero-image img{
-width:90%;
-border-radius:4px;
-margin-top:2px;
-}
+        .features-img { width: 100%; height: 350px; border-radius: 20px; overflow: hidden; background: #eee; }
+        .features-img img { width: 100%; height: 100%; object-fit: cover; }
 
-/* FLOATING ANIMATION */
-.floating-img{
-animation:floatingWave 6s ease-in-out infinite;
-}
+        /* --- PERFORMANCE METRICS --- */
+        .metrics-bar { background: var(--primary); color: white; padding: 5rem 8%; text-align: center; border-radius: 40px; margin: 0 4%; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        .metric-item h2 { font-size: 3rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .metric-item p { font-weight: 600; opacity: 0.8; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
 
-/* WAVE KEYFRAMES */
-@keyframes floatingWave{
-0%{transform:translateY(0px) rotate(0deg);}
-25%{transform:translateY(-6px) rotate(0.3deg);}
-50%{transform:translateY(0px) rotate(0deg);}
-75%{transform:translateY(6px) rotate(-0.3deg);}
-100%{transform:translateY(0px) rotate(0deg);}
-}
+        /* --- VISUAL STRIP (SLIDER) --- */
+        .visual-strip { background: var(--bg-light); overflow: hidden; white-space: nowrap; padding: 4rem 0; }
+        .slider-track { display: flex; gap: 20px; animation: scroll 40s linear infinite; width: calc(300px * 10); }
+        .slider-track:hover { animation-play-state: paused; }
+        .slide { width: 400px; height: 250px; border-radius: 15px; overflow: hidden; flex-shrink: 0; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
 
-/* HIGHLIGHT */
-.highlight{
-color:#61A1C8;
-font-weight:800;
-}
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-400px * 5)); }
+        }
 
-/* IMAGE STRIP SLIDER */
-.image-strip{
-overflow:hidden;
-margin:2rem 0;
-}
+        /* --- CTA SECTION --- */
+        .cta-box { 
+            background: linear-gradient(rgba(10, 61, 98, 0.9), rgba(10, 61, 98, 0.9)), url('images/FrontView_Sinnar.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 8%;
+            text-align: center;
+            color: white;
+            border-radius: 30px;
+            margin: 4rem 8%;
+        }
+        .cta-box h2 { color: white; font-size: 2.8rem; margin-bottom: 1.5rem; }
+        .cta-box p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-.strip-track{
-display:flex;
-animation:stripSlide 18s linear infinite;
-}
+        /* --- FOOTER --- */
+        footer { padding: 4rem 8%; background: #051a2b; color: rgba(255,255,255,0.6); text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
 
-.strip-track img{
-height:160px;
-width:auto;
-margin-right:25px;
-border-radius:6px;
-object-fit:contain;
-}
-
-/* SLIDE ANIMATION */
-@keyframes stripSlide{
-0%{transform:translateX(100%);}
-100%{transform:translateX(-100%);}
-}
-
-/* CONTENT GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:2rem;
-margin-top:0rem;
-}
-
-.card{
-background:#fafafa;
-padding:1.8rem;
-border-radius:6px;
-border:1px solid #e0e0e0;
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 6px 18px rgba(0,0,0,0.1);
-border-color:#0a3d62;
-}
-
-.card h3{
-color:#0a3d62;
-}
-
-/* CTA */
-.cta{
-text-align:center;
-margin-top:3rem;
-}
-
-.cta a{
-background:#0a3d62;
-color:#fff;
-padding:12px 30px;
-text-decoration:none;
-border-radius:30px;
-font-weight:600;
-}
-
-/* FOOTER */
-footer{
-background:#ffffff;
-color:#47c8fb;
-text-align:center;
-padding:2rem;
-margin-top:3rem;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-.hero-content{
-grid-template-columns:1fr;
-}
-.hero-text{
-text-align:center;
-}
-.logo{height:32px;}
-.hero-text h1{font-size:26px;}
-.strip-track img{height:120px;}
-}
-
-</style>
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; padding-top: 8rem; text-align: center; }
+            .hero-content { display: flex; flex-direction: column; align-items: center; }
+            .hero-stats { justify-content: center; }
+            .overview-grid { grid-template-columns: 1fr; }
+            .features-row, .features-row:nth-child(even) { grid-template-columns: 1fr; direction: ltr; gap: 2rem; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<a href="index.html">
-<img src="images\Climatag_webpageLogo2.jpg" class="logo">
-</a>
+    <nav>
+        <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG Logo" class="logo">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Solutions</a>
+    </nav>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="#design">Features</a>
-<a href="#benefits">Benefits</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">Flagship Product</span>
+            <h1>Climate Agnostic Onion Storage Structure (CAOSS)</h1>
+            <p>Engineered to neutralize external climatic threats, CAOSS ensures year-round quality stability and market readiness for high-volume onion storage.</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <strong>50%</strong>
+                    <span>Loss Reduction</span>
+                </div>
+                <div class="hero-stat-item">
+                    <strong>3-6 Mo</strong>
+                    <span>Shelf Life</span>
+                </div>
+                <div class="hero-stat-item">
+                    <strong>50%</strong>
+                    <span>Marketability Gain</span>
+                </div>
+            </div>
 
-<!-- HERO -->
-<section class="hero">
+            <div style="display: flex; gap: 1rem;">
+                <a href="#contact" class="btn btn-primary">Request Design</a>
+                <a href="#overview" class="btn" style="border: 1px solid var(--primary); color: var(--primary);">System Overview</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/Beed%20Onion%20Storage.jpg" alt="CAOSS Installation">
+        </div>
+    </section>
 
-<div class="hero-content">
+    <section id="overview" class="section">
+        <div class="section-header">
+            <span class="hero-tag">The Solution</span>
+            <h2>Scientific Storage Architecture</h2>
+            <p>CAOSS isn't just a shed—it's a precision-engineered micro-environment designed to fight the primary causes of onion rot: Heat and Humidity.</p>
+        </div>
+        
+        <div class="overview-grid">
+            <div class="overview-card">
+                <i class="fas fa-wind"></i>
+                <h3>Airflow Engineering</h3>
+                <p>Advanced ventilation paths ensure zero "hot spots," maintaining uniform temperature across all stacking levels.</p>
+            </div>
+            <div class="overview-card">
+                <i class="fas fa-thermometer-half"></i>
+                <h3>Thermal Moderation</h3>
+                <p>Maintains core temperature between 25-30°C, preventing the physiological stress that leads to weight loss.</p>
+            </div>
+            <div class="overview-card">
+                <i class="fas fa-tint-slash"></i>
+                <h3>Humidity Regulation</h3>
+                <p>Constant monitoring keeps Relative Humidity at 60-70%, inhibiting microbial growth and sprouting.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- TEXT -->
-<div class="hero-text">
+    <section class="metrics-bar">
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <h2>50%</h2>
+                <p>Reduction in Waste</p>
+            </div>
+            <div class="metric-item">
+                <h2>1.5x</h2>
+                <p>Farmer Income Uplift</p>
+            </div>
+            <div class="metric-item">
+                <h2>100%</h2>
+                <p>IoT Visibility</p>
+            </div>
+            <div class="metric-item">
+                <h2>12mo</h2>
+                <p>Storage Flexibility</p>
+            </div>
+        </div>
+    </section>
 
-<h1>
-<span class="highlight">Climate Agnostic</span> Onion Storage Structure
-</h1>
+    <section class="section">
+        <div class="features-row">
+            <div class="features-text">
+                <span class="hero-tag">Intelligence</span>
+                <h3>IoT-Based Micro-Climate Control</h3>
+                <p>The brain of the CAOSS system provides real-time data and automated response to external weather changes.</p>
+                <ul>
+                    <li>Remote monitoring via mobile dashboard</li>
+                    <li>Automated sensor-triggered ventilation</li>
+                    <li>Early warning alerts for humidity spikes</li>
+                    <li>Data logs for quality certification</li>
+                </ul>
+            </div>
+            <div class="features-img">
+                <img src="images/Isometric_beed.jpg" alt="IoT Interface">
+            </div>
+        </div>
 
-<p>
-The Climate Smart Onion Storage Structure is an innovative, modular solution designed to extend onion shelf life by 3–6 months through precise micro-climate control using IoT technology. This affordable, farmgate storage system mitigates climatic uncertainties, reducing post-harvest losses from biological factors (rotting, sprouting and Physiological weight loss) by up to 50% compared to the traditional onion storage and also minimizes mechanical damage through smart stacking designs. Its versatile structure supports multiple farm and non-farm commercial uses, enhancing utility and return on investment for farmer. An energy-efficient control algorithm minimizes operational costs, leveraging solar-powered IoT sensors to maintain optimal conditions (25–30°C, 60–70% humidity) with minimal environmental impact.
-</p>
+        <div class="features-row">
+            <div class="features-text">
+                <span class="hero-tag">Optimization</span>
+                <h3>Curing & Smart Stacking</h3>
+                <p>Engineered structural design that prioritizes crop health and ease of operations.</p>
+                <ul>
+                    <li>Initial curing system for moisture removal</li>
+                    <li>Scientific neck-closure for extended life</li>
+                    <li>Stacking design prevents mechanical damage</li>
+                    <li>Optimized for rapid loading/unloading</li>
+                </ul>
+            </div>
+            <div class="features-img">
+                <img src="images/Isometric_Outside_Sinnar.jpg" alt="Structural Design">
+            </div>
+        </div>
+    </section>
 
-<h1><span class="highlight">Up to 50%</span> reduction in storage losses!</h1>
-<h1><span class="highlight">Up to 50%</span> increase in marketability!</h1>
-<h1>So, Its a <span class="highlight">Double Benefit!!</span></h1>
+    <div class="visual-strip">
+        <div class="slider-track">
+            <div class="slide"><img src="images/FrontView_Sinnar.jpg" alt="Sinnar"></div>
+            <div class="slide"><img src="images/FrontView_Beed.jpg" alt="Beed"></div>
+            <div class="slide"><img src="images/Satna_Storage.jpg" alt="Satna"></div>
+            <div class="slide"><img src="images/Beed%20Onion%20Storage.jpg" alt="Beed 2"></div>
+            <div class="slide"><img src="images/FrontView_Sinnar.jpg" alt="Sinnar 2"></div>
+            <div class="slide"><img src="images/FrontView_Sinnar.jpg" alt="Sinnar"></div>
+            <div class="slide"><img src="images/FrontView_Beed.jpg" alt="Beed"></div>
+        </div>
+    </div>
 
-</div>
+    <section id="contact" class="cta-box">
+        <h2>Build Your Climate-Resilient Storage</h2>
+        <p>Whether you are an FPO, a commercial aggregator, or a government agency, CAOSS is the infrastructure upgrade you need to eliminate post-harvest losses.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="mailto:contact@climatag.in" class="btn btn-primary" style="background: var(--accent); color: var(--primary);">Contact Engineering Team</a>
+            <a href="tel:+919146400664" class="btn" style="border: 1px solid white; color: white;">Get Quote</a>
+        </div>
+    </section>
 
-<!-- IMAGE -->
-<div class="hero-image">
-<img src="images\Design Philosphy\Backdrop_3.png" class="floating-img">
-</div>
+    <footer>
+        <p>© 2026 CLIMATAG TECHNOLOGIES PVT LTD. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Engineering Climate Resilience for Indian Agriculture.</p>
+    </footer>
 
-</div>
+    <script>
+        // Simple Intersection Observer for Fade-in effects
+        const observerOptions = { threshold: 0.2 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-</section>
-
-<!-- DESIGN -->
-<section id="design">
-
-<h2>Storage Features</h2>
-
-<p>
-The system uses a climate-resilient design and IoT-based monitoring to maintain precise storage conditions, protecting onions from humidity and heat stress. Real-time sensing, remote control, and smart alerts ensure timely intervention and operational reliability. A built-in curing module enhances shelf life by reducing moisture and sprouting. Semi-automated handling minimizes labour, mechanical damage, and improves efficiency.
-</p>
-
-<!-- IMAGE STRIP -->
-<div class="image-strip">
-<div class="strip-track">
-
-<img src="images\Design Philosphy\Comparision_CAOSS.jpg">
-<img src="images\Design Philosphy\CAOSS_3D.jpg">
-<img src="images\Design Philosphy\Phaltan_OnionStorage.jpg">
-<img src="images\Design Philosphy\Parbhani_CAOSS.jpg">
-
-</div>
-</div>
-
-<div class="grid">
-
-<div class="card">
-<h3>Optimised Micro-climate Control</h3>
-<p>
-Shields onions from climatic uncertainties like untimely rain (high humidity), excessive heat (Low humidity) using robust, weather-resistant materials and algorithm based controlled micro-climate to maintain precise micro-climate reducing spoilage risks.
-</p>
-</div>
-
-<div class="card">
-<h3>IoT-Enabled Monitoring and Control</h3>
-<p>
-Real-time logging of temperature, humidity, and air quality via s IoT sensors, enabling precise micro-climate control and remote system control of Air treatment unit. Farmer don’t need to be at the storage site all the time.
-</p>
-</div>
-
-<div class="card">
-<h3>Smart Stacking system</h3>
-<p>
-Features a semi-automated bin system that minimizes human intervention, reducing labour costs and mechanical damage while improving operational efficiency.</p>
-</div>
-
-<div class="card">
-<h3>Onion Curing System</h3>
-<p>
-Incorporates a pre-storage curing module to uniformly preheat onions, enhancing shelf life by reducing moisture content and neck closing and preventing biological losses like rotting and sprouting during storage.
-</p>
-</div>
-
-</div>
-</section>
-
-<!-- BENEFITS -->
-<section id="benefits">
-<h2>Farmer Benefits</h2>
-<div class="grid">
-
-<div class="card">
-<div class="hero-image">
-<img src="images\Farmer benefits\farmer_A.jpg">
-</div>
-<h3>Extended Shelf Life</h3>
-<p>Storage period increased by 4-5 months.</p>
-</div>
-
-<div class="card">
-<div class="hero-image">
-<img src="images\Farmer benefits\farmer_B.jpg">
-</div>
-<h3>Reduced Losses</h3>
-<p>Up to 50% reduction in post-harvest losses comapred to Tradtional Chawl.</p>
-</div>
-
-<div class="card">
-<div class="hero-image">
-<img src="images\Farmer benefits\farmer_C.jpg">
-</div>
-<h3>Higher Market Returns</h3>
-<p>Better price realization through quality preservation, reduced losses and and selling in high demand period.</p>
-</div>
-
-</div>
-</section>
-
-<!-- CTA -->
-<section class="cta" id="contact">
-
-<h2>Interested in Building One?</h2>
-
-<p>
-Get in touch to design a customized storage structure for your region.
-</p>
-
-<a href="mailto:contact@climatag.in">Contact Us</a>
-
-</section>
-
-<footer>
-<img src="images\Climatag_webpageLogo2.jpg" height="36"><br><br>
-<p>© 2026 Climatag Technologies</p>
-</footer>
-
+        document.querySelectorAll('.overview-card, .features-row, .metrics-bar').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
-
