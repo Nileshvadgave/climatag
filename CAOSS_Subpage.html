@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAOSS | Climate Agnostic Onion Storage | CLIMATAG Technologies</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #0a3d62; /* Deep Engineering Blue */
-            --accent: #98C268;  /* Logo Green */
+            --primary: #0a3d62; 
+            --primary-light: #16537e;
+            --accent: #98C268;  
+            --accent-dark: #7aa34f;
             --bg-light: #f8fafc;
+            --bg-glass: rgba(255, 255, 255, 0.9);
             --text-main: #1e293b;
-            --text-muted: #64748b;
+            --text-muted: #475569;
             --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,155 +31,315 @@
             font-family: 'Inter', sans-serif; 
             color: var(--text-main); 
             background: var(--white); 
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3 { font-family: 'Outfit', sans-serif; color: var(--primary); }
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; color: var(--primary); font-weight: 700; }
 
         /* --- NAVIGATION --- */
         nav {
             position: fixed;
             top: 0; width: 100%;
-            padding: 1rem 8%;
+            padding: 1.2rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(10, 61, 98, 0.1);
+            border-bottom: 1px solid rgba(10, 61, 98, 0.08);
         }
 
-        .logo { height: 45px; width: auto; object-fit: contain; }
-        .back-link { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .logo { height: 42px; width: auto; object-fit: contain; transition: var(--transition); }
+        .logo:hover { transform: scale(1.05); }
+        .back-link { 
+            text-decoration: none; 
+            color: var(--primary); 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: rgba(10, 61, 98, 0.05);
+            transition: var(--transition);
+        }
+        .back-link:hover { background: var(--primary); color: white; }
 
         /* --- HERO SECTION --- */
         .hero {
-            padding: 10rem 8% 6rem;
-            background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%);
+            position: relative;
+            padding: 12rem 8% 8rem;
+            background: radial-gradient(circle at top right, rgba(152, 194, 104, 0.1), transparent), 
+                        linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 5rem;
             align-items: center;
+            min-height: 90vh;
         }
 
         .hero-tag { 
-            display: inline-block;
-            background: rgba(152, 194, 104, 0.15);
-            color: #5d8a2a;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
+            font-size: 0.7rem;
+            letter-spacing: 1.2px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(10, 61, 98, 0.2);
         }
 
-        .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; }
+        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; font-weight: 400; }
 
-        .hero-stats { display: flex; gap: 2rem; margin-bottom: 3rem; }
-        .hero-stat-item { border-left: 3px solid var(--accent); padding-left: 1rem; }
-        .hero-stat-item strong { font-size: 1.8rem; display: block; color: var(--primary); }
-        .hero-stat-item span { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; }
+        .hero-stats { 
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+        .hero-stat-item { 
+            background: white;
+            padding: 1.2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(10, 61, 98, 0.05);
+            transition: var(--transition);
+        }
+        .hero-stat-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+        .hero-stat-item strong { font-size: 1.8rem; display: block; color: var(--accent); margin-bottom: 4px; font-family: 'Outfit'; }
+        .hero-stat-item span { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
 
+        .hero-image-wrapper { position: relative; }
         .hero-image {
             width: 100%;
-            height: 500px;
-            border-radius: 30px;
+            height: 580px;
+            border-radius: 40px;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(10, 61, 98, 0.25);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 2;
         }
         .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(10, 61, 98, 0.4));
+        }
+        .image-accent-blob {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            opacity: 0.2;
+            filter: blur(50px);
+            z-index: 1;
+        }
 
         /* --- BUTTONS --- */
+        .btn-group { display: flex; gap: 1.2rem; }
         .btn {
-            padding: 1rem 2rem;
-            border-radius: 6px;
+            padding: 1.1rem 2.5rem;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
             cursor: pointer;
             border: none;
+            font-size: 0.95rem;
         }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(10, 61, 98, 0.2); }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(152, 194, 104, 0.3); color: var(--primary); }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+        .btn-outline:hover { background: rgba(10, 61, 98, 0.05); transform: translateY(-3px); }
+
+        /* --- SECTION GENERIC --- */
+        .section { padding: 10rem 8%; }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 6rem; }
+        .section-header .hero-tag { background: rgba(152, 194, 104, 0.15); color: var(--accent-dark); box-shadow: none; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 1.5rem; letter-spacing: -0.5px; }
+        .section-header p { font-size: 1.2rem; color: var(--text-muted); }
 
         /* --- SYSTEM OVERVIEW --- */
-        .section { padding: 8rem 8%; }
-        .section-header { text-align: center; max-width: 800px; margin: 0 auto 5rem; }
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        
-        .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+        .overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .overview-card { 
-            padding: 3rem 2rem; 
-            background: var(--bg-light); 
-            border-radius: 20px; 
+            padding: 4rem 2.5rem; 
+            background: white; 
+            border-radius: 30px; 
             transition: var(--transition);
-            border-bottom: 4px solid transparent;
+            border: 1px solid rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
-        .overview-card:hover { background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--accent); transform: translateY(-5px); }
-        .overview-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
-        .overview-card h3 { margin-bottom: 1rem; }
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: var(--transition);
+            transform-origin: left;
+        }
+        .overview-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+        .overview-card:hover::before { transform: scaleX(1); }
+        
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: rgba(152, 194, 104, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        .overview-card:hover .icon-box { background: var(--accent); }
+        .overview-card i { font-size: 2rem; color: var(--accent); transition: var(--transition); }
+        .overview-card:hover i { color: white; }
+        .overview-card h3 { font-size: 1.5rem; margin-bottom: 1.2rem; }
+        .overview-card p { color: var(--text-muted); font-size: 1rem; }
 
-        /* --- ENGINEERING FEATURES (GRID) --- */
-        .features-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; margin-bottom: 6rem; }
+        /* --- PERFORMANCE METRICS STRIP --- */
+        .metrics-bar { 
+            background: var(--primary); 
+            color: white; 
+            padding: 6rem 8%; 
+            border-radius: 60px; 
+            margin: 0 4%;
+            position: relative;
+            z-index: 5;
+            background-image: radial-gradient(circle at 20% 30%, rgba(152, 194, 104, 0.15) 0%, transparent 50%);
+        }
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+        .metric-item { text-align: center; }
+        .metric-item h2 { font-size: 4rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 800; }
+        .metric-item p { font-weight: 600; opacity: 0.9; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+
+        /* --- ALTERNATING FEATURES --- */
+        .features-container { background: #fdfdfd; padding: 10rem 0; }
+        .features-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 8rem; 
+            align-items: center; 
+            margin-bottom: 12rem; 
+            padding: 0 8%;
+        }
+        .features-row:last-child { margin-bottom: 0; }
         .features-row:nth-child(even) { direction: rtl; }
         .features-row:nth-child(even) .features-text { direction: ltr; }
         
-        .features-text h3 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .features-text {
+            background: white;
+            padding: 3rem;
+            border-radius: 40px;
+            box-shadow: var(--shadow-md);
+        }
+        .features-text h3 { font-size: 2.2rem; margin-bottom: 1.5rem; line-height: 1.2; }
+        .features-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; }
         .features-text ul { list-style: none; }
-        .features-text li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: var(--text-muted); }
-        .features-text li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+        .features-text li { 
+            margin-bottom: 1.2rem; 
+            padding-left: 2rem; 
+            position: relative; 
+            color: var(--text-main); 
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        .features-text li::before { 
+            content: '\f058'; 
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute; 
+            left: 0; 
+            color: var(--accent); 
+            font-size: 1.2rem;
+        }
 
-        .features-img { width: 100%; height: 350px; border-radius: 20px; overflow: hidden; background: #eee; }
-        .features-img img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* --- PERFORMANCE METRICS --- */
-        .metrics-bar { background: var(--primary); color: white; padding: 5rem 8%; text-align: center; border-radius: 40px; margin: 0 4%; }
-        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-        .metric-item h2 { font-size: 3rem; color: var(--accent); margin-bottom: 0.5rem; }
-        .metric-item p { font-weight: 600; opacity: 0.8; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .features-img { 
+            width: 100%; 
+            height: 500px; 
+            border-radius: 40px; 
+            overflow: hidden; 
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+        }
+        .features-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease; }
+        .features-row:hover .features-img img { transform: scale(1.05); }
 
         /* --- VISUAL STRIP (SLIDER) --- */
-        .visual-strip { background: var(--bg-light); overflow: hidden; white-space: nowrap; padding: 4rem 0; }
-        .slider-track { display: flex; gap: 20px; animation: scroll 40s linear infinite; width: calc(300px * 10); }
-        .slider-track:hover { animation-play-state: paused; }
-        .slide { width: 400px; height: 250px; border-radius: 15px; overflow: hidden; flex-shrink: 0; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .visual-strip { background: var(--bg-light); padding: 6rem 0; border-top: 1px solid rgba(0,0,0,0.05); }
+        .slider-track { display: flex; gap: 30px; animation: scroll 60s linear infinite; width: max-content; }
+        .slide { width: 450px; height: 300px; border-radius: 24px; overflow: hidden; flex-shrink: 0; box-shadow: var(--shadow-md); }
+        .slide img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .slide:hover img { transform: scale(1.1); }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-400px * 5)); }
+            100% { transform: translateX(calc(-480px * 4)); }
         }
 
         /* --- CTA SECTION --- */
+        .cta-container { padding: 6rem 8%; background: var(--white); }
         .cta-box { 
-            background: linear-gradient(rgba(10, 61, 98, 0.9), rgba(10, 61, 98, 0.9)), url('images/FrontView_Sinnar.jpg');
+            background: linear-gradient(135deg, rgba(10, 61, 98, 0.95), rgba(5, 26, 43, 0.98)), url('images/FrontView_Sinnar.jpg');
             background-size: cover;
             background-position: center;
-            padding: 6rem 8%;
+            background-attachment: fixed;
+            padding: 8rem 4%;
             text-align: center;
             color: white;
-            border-radius: 30px;
-            margin: 4rem 8%;
+            border-radius: 60px;
+            box-shadow: 0 30px 60px rgba(10, 61, 98, 0.3);
+            position: relative;
+            overflow: hidden;
         }
-        .cta-box h2 { color: white; font-size: 2.8rem; margin-bottom: 1.5rem; }
-        .cta-box p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .cta-box h2 { color: white; font-size: 3.5rem; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .cta-box p { font-size: 1.4rem; opacity: 0.85; margin-bottom: 3.5rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+        .cta-box .btn-primary { background: var(--accent); color: var(--primary); }
+        .cta-box .btn-primary:hover { background: var(--white); }
 
         /* --- FOOTER --- */
-        footer { padding: 4rem 8%; background: #051a2b; color: rgba(255,255,255,0.6); text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer { padding: 6rem 8% 4rem; background: #051a2b; color: rgba(255,255,255,0.5); text-align: center; }
+        .footer-logo { height: 40px; margin-bottom: 2rem; filter: brightness(0) invert(1); opacity: 0.8; }
+        .footer-line { height: 1px; background: rgba(255,255,255,0.1); margin: 3rem 0; width: 100%; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .hero { grid-template-columns: 1fr; padding-top: 8rem; text-align: center; }
+            .hero { grid-template-columns: 1fr; padding-top: 10rem; text-align: center; }
+            .hero h1 { font-size: 3rem; }
             .hero-content { display: flex; flex-direction: column; align-items: center; }
-            .hero-stats { justify-content: center; }
+            .hero-stats { grid-template-columns: repeat(3, 1fr); width: 100%; }
+            .btn-group { justify-content: center; width: 100%; }
             .overview-grid { grid-template-columns: 1fr; }
-            .features-row, .features-row:nth-child(even) { grid-template-columns: 1fr; direction: ltr; gap: 2rem; }
-            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            .features-row, .features-row:nth-child(even) { grid-template-columns: 1fr; direction: ltr; gap: 3rem; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .features-img { height: 350px; }
+            .cta-box h2 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-stats { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; }
+            .section-header h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -186,7 +352,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-tag">Flagship Product</span>
+            <span class="hero-tag"><i class="fas fa-star"></i> Flagship Product</span>
             <h1>Climate Agnostic Onion Storage Structure (CAOSS)</h1>
             <p>Engineered to neutralize external climatic threats, CAOSS ensures year-round quality stability and market readiness for high-volume onion storage.</p>
             
@@ -201,17 +367,20 @@
                 </div>
                 <div class="hero-stat-item">
                     <strong>50%</strong>
-                    <span>Marketability Gain</span>
+                    <span>Marketability</span>
                 </div>
             </div>
 
-            <div style="display: flex; gap: 1rem;">
+            <div class="btn-group">
                 <a href="#contact" class="btn btn-primary">Request Design</a>
-                <a href="#overview" class="btn" style="border: 1px solid var(--primary); color: var(--primary);">System Overview</a>
+                <a href="#overview" class="btn btn-outline">System Overview</a>
             </div>
         </div>
-        <div class="hero-image">
-            <img src="images/Beed%20Onion%20Storage.jpg" alt="CAOSS Installation">
+        <div class="hero-image-wrapper">
+            <div class="image-accent-blob"></div>
+            <div class="hero-image">
+                <img src="images/Beed%20Onion%20Storage.jpg" alt="CAOSS Installation">
+            </div>
         </div>
     </section>
 
@@ -224,17 +393,17 @@
         
         <div class="overview-grid">
             <div class="overview-card">
-                <i class="fas fa-wind"></i>
+                <div class="icon-box"><i class="fas fa-wind"></i></div>
                 <h3>Airflow Engineering</h3>
                 <p>Advanced ventilation paths ensure zero "hot spots," maintaining uniform temperature across all stacking levels.</p>
             </div>
             <div class="overview-card">
-                <i class="fas fa-thermometer-half"></i>
+                <div class="icon-box"><i class="fas fa-thermometer-half"></i></div>
                 <h3>Thermal Moderation</h3>
                 <p>Maintains core temperature between 25-30°C, preventing the physiological stress that leads to weight loss.</p>
             </div>
             <div class="overview-card">
-                <i class="fas fa-tint-slash"></i>
+                <div class="icon-box"><i class="fas fa-tint-slash"></i></div>
                 <h3>Humidity Regulation</h3>
                 <p>Constant monitoring keeps Relative Humidity at 60-70%, inhibiting microbial growth and sprouting.</p>
             </div>
@@ -262,8 +431,8 @@
         </div>
     </section>
 
-    <section class="section">
-        <div class="features-row">
+    <div class="features-container">
+        <section class="features-row">
             <div class="features-text">
                 <span class="hero-tag">Intelligence</span>
                 <h3>IoT-Based Micro-Climate Control</h3>
@@ -278,9 +447,9 @@
             <div class="features-img">
                 <img src="images/Isometric_beed.jpg" alt="IoT Interface">
             </div>
-        </div>
+        </section>
 
-        <div class="features-row">
+        <section class="features-row">
             <div class="features-text">
                 <span class="hero-tag">Optimization</span>
                 <h3>Curing & Smart Stacking</h3>
@@ -295,8 +464,8 @@
             <div class="features-img">
                 <img src="images/Isometric_Outside_Sinnar.jpg" alt="Structural Design">
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <div class="visual-strip">
         <div class="slider-track">
@@ -307,26 +476,30 @@
             <div class="slide"><img src="images/FrontView_Sinnar.jpg" alt="Sinnar 2"></div>
             <div class="slide"><img src="images/FrontView_Sinnar.jpg" alt="Sinnar"></div>
             <div class="slide"><img src="images/FrontView_Beed.jpg" alt="Beed"></div>
+            <div class="slide"><img src="images/Satna_Storage.jpg" alt="Satna"></div>
         </div>
     </div>
 
-    <section id="contact" class="cta-box">
-        <h2>Build Your Climate-Resilient Storage</h2>
-        <p>Whether you are an FPO, a commercial aggregator, or a government agency, CAOSS is the infrastructure upgrade you need to eliminate post-harvest losses.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center;">
-            <a href="mailto:contact@climatag.in" class="btn btn-primary" style="background: var(--accent); color: var(--primary);">Contact Engineering Team</a>
-            <a href="tel:+919146400664" class="btn" style="border: 1px solid white; color: white;">Get Quote</a>
+    <section class="cta-container">
+        <div id="contact" class="cta-box">
+            <h2>Build Your Climate-Resilient Storage</h2>
+            <p>Whether you are an FPO, a commercial aggregator, or a government agency, CAOSS is the infrastructure upgrade you need to eliminate post-harvest losses.</p>
+            <div class="btn-group" style="justify-content: center;">
+                <a href="mailto:contact@climatag.in" class="btn btn-primary"><i class="fas fa-envelope" style="margin-right: 10px;"></i> Contact Engineering Team</a>
+                <a href="tel:+919146400664" class="btn btn-outline" style="border-color: white; color: white;"><i class="fas fa-phone" style="margin-right: 10px;"></i> Get Quote</a>
+            </div>
         </div>
     </section>
 
     <footer>
+        <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG Logo" class="footer-logo">
         <p>© 2026 CLIMATAG TECHNOLOGIES PVT LTD. All rights reserved.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem;">Engineering Climate Resilience for Indian Agriculture.</p>
+        <div class="footer-line"></div>
+        <p style="font-size: 0.9rem; font-weight: 500;">Engineering Climate Resilience for Indian Agriculture.</p>
     </footer>
 
     <script>
-        // Simple Intersection Observer for Fade-in effects
-        const observerOptions = { threshold: 0.2 };
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -336,10 +509,10 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.overview-card, .features-row, .metrics-bar').forEach(el => {
+        document.querySelectorAll('.overview-card, .features-row, .metrics-bar, .section-header, .hero-content, .hero-image-wrapper').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s ease-out';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'all 1s cubic-bezier(0.165, 0.84, 0.44, 1)';
             observer.observe(el);
         });
     </script>
