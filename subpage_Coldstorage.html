@@ -1,0 +1,456 @@
+Here is the subpage HTML code for **Thermal Backup Cold Storage**, styled consistently with your provided CAOSS template but tailored to the specific technical requirements of vegetable and fruit storage.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermal Backup Cold Storage | CLIMATAG TECHNOLOGIES</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0a3d62; 
+            --primary-light: #16537e;
+            --accent: #98C268;  
+            --accent-dark: #7aa34f;
+            --bg-light: #f8fafc;
+            --bg-glass: rgba(255, 255, 255, 0.95);
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --white: #ffffff;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            
+            --fs-h1: clamp(2.2rem, 8vw, 4rem);
+            --fs-h2: clamp(1.8rem, 6vw, 3rem);
+            --fs-h3: clamp(1.4rem, 4vw, 2.2rem);
+            --fs-body: clamp(0.95rem, 2vw, 1.1rem);
+            --fs-tag: 0.7rem;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main); 
+            background: var(--white); 
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3 { font-family: 'Outfit', sans-serif; color: var(--primary); font-weight: 700; line-height: 1.2; }
+
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(10, 61, 98, 0.08);
+        }
+
+        .logo { height: 36px; width: auto; object-fit: contain; transition: var(--transition); }
+        
+        .back-link { 
+            text-decoration: none; 
+            color: var(--primary); 
+            font-weight: 600; 
+            font-size: 0.75rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 50px;
+            background: rgba(10, 61, 98, 0.05);
+            transition: var(--transition);
+        }
+        .back-link:hover { background: var(--primary); color: white; }
+
+        .hero {
+            position: relative;
+            padding: 8rem 5% 4rem;
+            background: radial-gradient(circle at top right, rgba(152, 194, 104, 0.1), transparent), 
+                        linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            min-height: 85vh;
+        }
+
+        .hero-tag { 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: var(--fs-tag);
+            letter-spacing: 1.2px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(10, 61, 98, 0.2);
+        }
+
+        .hero h1 { font-size: var(--fs-h1); margin-bottom: 1rem; letter-spacing: -1px; }
+        .hero p { font-size: var(--fs-body); color: var(--text-muted); margin-bottom: 2rem; max-width: 600px; }
+
+        .hero-stats { 
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .hero-stat-item { 
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(10, 61, 98, 0.05);
+            text-align: center;
+        }
+        .hero-stat-item strong { font-size: clamp(1.2rem, 3vw, 1.8rem); display: block; color: var(--accent); margin-bottom: 2px; font-family: 'Outfit'; }
+        .hero-stat-item span { font-size: 0.65rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; display: block; line-height: 1.2; }
+
+        .hero-image-wrapper { position: relative; width: 100%; }
+        .hero-image {
+            width: 100%;
+            height: clamp(300px, 50vh, 580px);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 2;
+        }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            width: auto;
+            min-width: 180px;
+        }
+        .btn-primary { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(10, 61, 98, 0.2); }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+
+        .section { padding: 5rem 5%; }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 3rem; padding: 0 15px; }
+        .section-header h2 { font-size: var(--fs-h2); margin-bottom: 1rem; }
+
+        /* --- SPECIFICATIONS GRID --- */
+        .spec-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 1.5rem; 
+        }
+        .spec-card { 
+            padding: 2rem; 
+            background: var(--bg-light); 
+            border-radius: 20px; 
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+        .spec-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); background: white; }
+        .spec-card h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .spec-card p { font-size: 1.2rem; font-weight: 700; color: var(--primary); font-family: 'Outfit'; }
+
+        .metrics-bar { 
+            background: var(--primary); 
+            color: white; 
+            padding: 4rem 5%; 
+            border-radius: 30px; 
+            margin: 2rem 5%;
+            background-image: radial-gradient(circle at 20% 30%, rgba(152, 194, 104, 0.15) 0%, transparent 50%);
+        }
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .metric-item { text-align: center; }
+        .metric-item h2 { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--accent); margin-bottom: 0.25rem; }
+        .metric-item p { font-weight: 600; font-size: 0.7rem; letter-spacing: 1px; opacity: 0.9; text-transform: uppercase; }
+
+        .features-container { background: #fdfdfd; padding: 4rem 0; }
+        .features-row { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 4rem; 
+            align-items: center; 
+            margin-bottom: 6rem; 
+            padding: 0 5%;
+        }
+        .features-row:nth-child(even) { direction: rtl; }
+        .features-row:nth-child(even) .features-text { direction: ltr; }
+        
+        .features-text {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow-md);
+        }
+        .features-text h3 { font-size: var(--fs-h3); margin-bottom: 1rem; }
+        .features-text ul { list-style: none; margin-top: 1.5rem; }
+        .features-text li { 
+            margin-bottom: 1rem; 
+            padding-left: 1.8rem; 
+            position: relative; 
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .features-text li::before { 
+            content: '\f058'; 
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute; 
+            left: 0; 
+            color: var(--accent); 
+        }
+
+        .features-img { 
+            width: 100%; 
+            height: 400px; 
+            border-radius: 30px; 
+            overflow: hidden; 
+            box-shadow: var(--shadow-lg);
+        }
+        .features-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .cta-container { padding: 4rem 5%; }
+        .cta-box { 
+            background: linear-gradient(135deg, rgba(10, 61, 98, 0.95), rgba(5, 26, 43, 0.98));
+            padding: 5rem 1.5rem;
+            text-align: center;
+            color: white;
+            border-radius: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+        .cta-box h2 { color: white; font-size: var(--fs-h2); margin-bottom: 1rem; }
+        .cta-box p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .cta-box .btn-primary { background: var(--accent); color: var(--primary); }
+
+        footer { padding: 4rem 5%; background: #051a2b; color: rgba(255,255,255,0.6); text-align: center; font-size: 0.85rem; }
+        .footer-logo { height: 32px; margin-bottom: 1.5rem; filter: brightness(0) invert(1); }
+
+        @media (max-width: 991px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 7rem; gap: 2rem; }
+            .hero-content { order: 1; display: flex; flex-direction: column; align-items: center; }
+            .hero-image-wrapper { order: 2; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-stats { max-width: 500px; margin-left: auto; margin-right: auto; }
+            .features-row { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 4rem; }
+            .features-img { height: 300px; }
+            .features-row:nth-child(even) { direction: ltr; }
+        }
+
+        @media (max-width: 480px) {
+            .metrics-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .hero-stats { grid-template-columns: 1fr; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG Logo" class="logo">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag"><i class="fas fa-snowflake"></i> Solar-Thermal Solution</span>
+            <h1>Thermal Backup Cold Storage</h1>
+            <p>A hybrid, ice-bank powered cold room designed for remote and hilly terrains. Neutralizing post-harvest losses for highly perishable vegetables and fruits.</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <strong>3 MT</strong>
+                    <span>Storage Cap.</span>
+                </div>
+                <div class="hero-stat-item">
+                    <strong>5°C+</strong>
+                    <span>Temp. Range</span>
+                </div>
+                <div class="hero-stat-item">
+                    <strong>0%</strong>
+                    <span>Battery Lead</span>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="#contact" class="btn btn-primary">Request Quote</a>
+                <a href="#specs" class="btn btn-outline">Technical Specs</a>
+            </div>
+        </div>
+        <div class="hero-image-wrapper">
+            <div class="hero-image">
+                <img src="images/ThermalBackup_Front.jpg" alt="Cold Storage Installation">
+            </div>
+        </div>
+    </section>
+
+    <section id="problems" class="section">
+        <div class="section-header">
+            <span class="hero-tag">The Challenge</span>
+            <h2>Overcoming Rural Perishability</h2>
+            <p>Traditional vegetable supply chains in remote regions face 30-40% losses due to lack of immediate cooling and hilly terrain delays.</p>
+        </div>
+        
+        <div class="features-row">
+            <div class="features-text">
+                <h3>Current Infrastructure Gaps</h3>
+                <ul>
+                    <li>Short shelf life (5-7 days) at ambient temperatures.</li>
+                    <li>Absence of cold chain in remote/hilly regions.</li>
+                    <li>Price crashes during seasonal gluts.</li>
+                    <li>Transit decay due to poor road connectivity.</li>
+                </ul>
+            </div>
+            <div class="features-img">
+                <img src="images/Rural_Farm_Loss.jpg" alt="Agricultural Challenges">
+            </div>
+        </div>
+    </section>
+
+    <section id="specs" class="section" style="background: white;">
+        <div class="section-header">
+            <span class="hero-tag">Specifications</span>
+            <h2>Technical Configuration</h2>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-card">
+                <h4>Cooling Capacity</h4>
+                <p>1.5 TR (Hybrid Grid Tied)</p>
+            </div>
+            <div class="spec-card">
+                <h4>Solar Power</h4>
+                <p>2.5 kWp Array</p>
+            </div>
+            <div class="spec-card">
+                <h4>Thermal Backup</h4>
+                <p>Ice-bank Based System</p>
+            </div>
+            <div class="spec-card">
+                <h4>Cooling Type</h4>
+                <p>Forced Air Pre-cooling</p>
+            </div>
+            <div class="spec-card">
+                <h4>Floor Space</h4>
+                <p>300 sq. ft.</p>
+            </div>
+            <div class="spec-card">
+                <h4>Monitoring</h4>
+                <p>Remote Temp & RH</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="metrics-bar">
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <h2>100%</h2>
+                <p>Solar Powered</p>
+            </div>
+            <div class="metric-item">
+                <h2>7+ Days</h2>
+                <p>Extended Freshness</p>
+            </div>
+            <div class="metric-item">
+                <h2>0 Kg</h2>
+                <p>Lead-Acid Waste</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="features-container">
+        <section class="features-row">
+            <div class="features-text">
+                <span class="hero-tag">Innovation</span>
+                <h3>Ice-Bank Thermal Backup</h3>
+                <p>Unlike conventional cold rooms that use expensive and short-lived lead-acid batteries, our system stores energy as ice.</p>
+                <ul>
+                    <li>No battery replacement costs every 3 years.</li>
+                    <li>Eco-friendly thermal energy storage.</li>
+                    <li>Maintains stable 5°C even during power cuts.</li>
+                    <li>Optimized for off-grid operation.</li>
+                </ul>
+            </div>
+            <div class="features-img">
+                <img src="images/Thermal_Backup_Internal.jpg" alt="Thermal Storage Tech">
+            </div>
+        </section>
+
+        <section class="features-row">
+            <div class="features-text">
+                <span class="hero-tag">Intelligence</span>
+                <h3>Remote State Monitoring</h3>
+                <p>Real-time visibility into your inventory's health, no matter how remote the installation site.</p>
+                <ul>
+                    <li>Live RH (Relative Humidity) tracking.</li>
+                    <li>Precise temperature log charts.</li>
+                    <li>Automated fault detection alerts.</li>
+                    <li>Mobile dashboard for site managers.</li>
+                </ul>
+            </div>
+            <div class="features-img">
+                <img src="images/IoT_Monitoring_Dashboard.jpg" alt="Remote Monitoring">
+            </div>
+        </section>
+    </div>
+
+    <section class="cta-container">
+        <div id="contact" class="cta-box">
+            <h2>Ready to eliminate post-harvest waste?</h2>
+            <p>Deploy decentralized cold storage solutions at the farm-gate. Contact our engineering team for a customized layout and ROI analysis.</p>
+            <div class="btn-group" style="justify-content: center;">
+                <a href="mailto:contact@climatag.in" class="btn btn-primary"><i class="fas fa-envelope" style="margin-right: 10px;"></i> Contact Engineering</a>
+                <a href="tel:+919146400664" class="btn btn-outline" style="border-color: white; color: white;"><i class="fas fa-phone" style="margin-right: 10px;"></i> Call for Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <img src="images/Climatag_webpageLogo2.jpg" alt="CLIMATAG Logo" class="footer-logo">
+        <p>© 2026 CLIMATAG TECHNOLOGIES PVT LTD. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.overview-card, .spec-card, .features-row, .metrics-bar, .section-header, .hero-content, .hero-image-wrapper').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+```
